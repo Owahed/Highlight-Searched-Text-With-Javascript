@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Searched Text With Javascript</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <input type="text" id="text-to-search" placeholder="Enter text to search...">
+            <button onclick="search()">Search</button>
+        </div>
+        <div id="par">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsam tempora porro veritatis labore, aliquam modi recusandae quas voluptas unde, deleniti amet quae autem? Quaerat saepe nisi rerum quo, repellat assumenda sapiente, vel labore impedit, ex consequatur dicta laborum tempore nemo.</div>
+    </div>
+
+    <script>
+        function search(){
+            
+            let textToSearch= document.getElementById('text-to-search').value;
+            let par=document.getElementById('par');
+            textToSearch= textToSearch.replace(/[.**?^${}()|[\]\\]/g,"\\$&");
+
+            let pattern= new RegExp(`${textToSearch}`,"gi");
+            par.innerHTML =par.textContent.replace(pattern,match=>`<Mark>${match}</Mark>`)
+        }
+    </script>
+</body>
+</html>
